@@ -11,7 +11,8 @@ import InteractiveModel from "./components/InteractiveModel";
 import Sheep from "./components/Sheep";
 import FollowCamera from "./components/FollowCamera";
 import Model from "./components/Model";
-import OverlayControls from './components/OverlayControls';
+import Berger from "./components/Berger";
+import OverlayControls from "./components/OverlayControls";
 
 function App() {
   const sheepRef = useRef();
@@ -41,7 +42,8 @@ function App() {
           />
 
           {/* Sol */}
-          <Ground />
+
+          <Ground transparent opacity={0} />
 
           {/* Murs invisibles mais bloquants */}
           {[
@@ -58,19 +60,80 @@ function App() {
 
           {/* Modèles */}
           <Suspense fallback={null}>
-            <Model url="/models/Rock.glb" position={[-7, 0, -6]} scale={[10, 10, 10]} />
-            <Model url="/models/Pond.glb" position={[7, 0.4, 8]} scale={[3, 3, 3]} />
-            <Model url="/models/Low_poly_floating_islands.glb" position={[60, 0, -30]} scale={[0.1, 0.1, 0.1]} />
-            <Model url="/models/Two_Trees.glb" position={[20, -7, 30]} scale={[16, 16, 16]} />
-            <Model url="/models/Two_Trees.glb" position={[-20, 4, -30]} scale={[16, 16, 16]} />
-            <InteractiveModel url="/models/Pinecone.glb" initialPosition={[7, 1, -7]} scale={[0.4, 0.4, 0.4]} />
-            <InteractiveModel url="/models/Pinecone.glb" initialPosition={[6, 1, -7]} scale={[0.4, 0.4, 0.4]} />
-            <InteractiveModel url="/models/Pinecone.glb" initialPosition={[6, 1, -6]} scale={[0.4, 0.4, 0.4]} />
-            <Model url="/models/Pine.glb" position={[8, 0, -9]} scale={[0.8, 0.8, 0.8]} />
-            <Model url="/models/Pine.glb" position={[7, 0, -8]} scale={[0.6, 0.6, 0.6]} />
-            <Model url="/models/Pine.glb" position={[7, 0, -9]} scale={[0.6, 0.6, 0.6]} />
-            <Model url="/models/Apple_tree.glb" position={[0, 0, 7]} scale={[0.8, 0.8, 0.8]} />
-            <Model url="/models/Island.glb" position={[0, -18.4, 0]} scale={[25, 25, 25]} />
+            <Suspense fallback={null}>
+              <Berger
+                url="/models/Adventurer.glb"
+                position={[9, 0, 4]}
+                scale={[1, 1, 1]}
+                sheepRef={sheepRef}
+              />
+            </Suspense>
+
+            <Model
+              url="/models/Rock.glb"
+              position={[-7, 0, -6]}
+              scale={[10, 10, 10]}
+            />
+            <Model
+              url="/models/Pond.glb"
+              position={[7, 0.3, 8]}
+              scale={[3, 3, 3]}
+            />
+            <Model
+              url="/models/Low_poly_floating_islands.glb"
+              position={[60, 0, -30]}
+              scale={[0.1, 0.1, 0.1]}
+            />
+            <Model
+              url="/models/Two_Trees.glb"
+              position={[20, -7, 30]}
+              scale={[16, 16, 16]}
+            />
+            <Model
+              url="/models/Two_Trees.glb"
+              position={[-20, 4, -30]}
+              scale={[16, 16, 16]}
+            />
+            <InteractiveModel
+              url="/models/Pinecone.glb"
+              initialPosition={[7, 1, -7]}
+              scale={[0.4, 0.4, 0.4]}
+            />
+            <InteractiveModel
+              url="/models/Pinecone.glb"
+              initialPosition={[6, 1, -7]}
+              scale={[0.4, 0.4, 0.4]}
+            />
+            <InteractiveModel
+              url="/models/Pinecone.glb"
+              initialPosition={[6, 1, -6]}
+              scale={[0.4, 0.4, 0.4]}
+            />
+            <Model
+              url="/models/Pine.glb"
+              position={[8, 0, -9]}
+              scale={[0.8, 0.8, 0.8]}
+            />
+            <Model
+              url="/models/Pine.glb"
+              position={[7, 0, -8]}
+              scale={[0.6, 0.6, 0.6]}
+            />
+            <Model
+              url="/models/Pine.glb"
+              position={[7, 0, -9]}
+              scale={[0.6, 0.6, 0.6]}
+            />
+            <Model
+              url="/models/Apple_tree.glb"
+              position={[0, 0, 7]}
+              scale={[0.8, 0.8, 0.8]}
+            />
+            <Model
+              url="/models/Island.glb"
+              position={[0, -18.4, 0]}
+              scale={[25, 25, 25]}
+            />
           </Suspense>
 
           {/* Mouton + Caméra */}
@@ -81,7 +144,11 @@ function App() {
               scale={[0.5, 0.5, 0.5]}
               ref={sheepRef}
             />
-            <FollowCamera targetRef={sheepRef} offset={new THREE.Vector3(0, 5, -10)} lerpFactor={0.1} />
+            <FollowCamera
+              targetRef={sheepRef}
+              offset={new THREE.Vector3(0, 5, -10)}
+              lerpFactor={0.1}
+            />
           </Suspense>
         </Physics>
 

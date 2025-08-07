@@ -29,6 +29,19 @@ const Sheep = forwardRef(function Sheep(
   }, [ref]);
 
   useEffect(() => {
+  if (!scene) return;
+  scene.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = true;
+      child.receiveShadow = true;
+      if (child.material) {
+        child.material.needsUpdate = true;
+      }
+    }
+  });
+}, [scene]);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       keysPressed.current[e.key.toLowerCase()] = true;
     };
